@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: letstalk-code/ab3-visuals
+  branch: main
+  base_url: https://ab3visuals.vercel.app
+  auth_endpoint: /api/auth
+
+media_folder: "images/blog"
+public_folder: "/images/blog"
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title",        name: "title",       widget: "string" }
+      - { label: "Publish Date", name: "date",        widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Cover Image",  name: "coverImage",  widget: "image",    required: false }
+      - { label: "Excerpt",      name: "excerpt",     widget: "text" }
+      - { label: "Category",     name: "category",    widget: "select",   options: ["Real Estate", "Aerial & Drone", "Video Marketing", "Virtual Staging", "Tips & Guides"] }
+      - { label: "Body",         name: "body",        widget: "markdown" }

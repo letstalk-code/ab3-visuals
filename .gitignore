@@ -1,0 +1,30 @@
+# Vercel
+.vercel
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Large binary files
+*.mp4
+*.mov
+*.avi
+*.zip
+
+# Duplicate root-level files
+/bg-greatwall.jpg
+/faa-certified.jpg
+/hero-aerial.jpg
+/hero-commercials.jpg
+/hero-realestate.jpg
+/hero-wedding.jpg
+/portfolio-*.jpg
+/service-*.jpg
+/strive-for-5.jpg
+/logo.png
+/chevron-*.png
+/Waldorf*.png
+
+# Duplicate folders
+/assets/
+/work/

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — AB3 Visuals</title>
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .post-hero {
+      background: #0e0e0e;
+      padding: 8rem 2rem 3rem;
+      text-align: center;
+    }
+    .post-hero .label { color: #e31c1c; }
+    .post-hero h1 {
+      color: #fff; font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      max-width: 760px; margin: 0.5rem auto 1rem; line-height: 1.2;
+    }
+    .post-hero__meta { color: rgba(255,255,255,0.45); font-size: 0.85rem; }
+    .post-hero__meta span { margin: 0 0.5rem; }
+
+    .post-cover { width: 100%; max-height: 520px; object-fit: cover; display: block; }
+
+    .post-body-section { padding: 4rem 2rem; background: var(--cream); }
+    .post-body-section__inner { max-width: 760px; margin: 0 auto; }
+
+    .post-body { font-size: 1.05rem; line-height: 1.8; color: #2a1a0a; }
+    .post-body h2 { font-family: var(--font-display); font-size: 1.7rem; margin: 2rem 0 0.75rem; color: #1a1007; }
+    .post-body h3 { font-family: var(--font-display); font-size: 1.3rem; margin: 1.5rem 0 0.5rem; }
+    .post-body p  { margin: 0 0 1.2rem; }
+    .post-body ul, .post-body ol { padding-left: 1.5rem; margin: 0 0 1.2rem; }
+    .post-body li { margin-bottom: 0.4rem; }
+    .post-body a  { color: #e31c1c; }
+    .post-body strong { font-weight: 600; }
+    .post-body blockquote {
+      border-left: 3px solid #e31c1c; margin: 1.5rem 0;
+      padding: 0.5rem 1.5rem; font-style: italic; color: #555;
+    }
+
+    .post-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.85rem; font-weight: 600; color: #e31c1c;
+      text-decoration: none; margin-bottom: 2rem;
+    }
+    .post-back:hover { text-decoration: underline; }
+
+    .post-cta {
+      margin-top: 3rem; padding: 2.5rem;
+      background: #1a1007; border-radius: 12px; text-align: center;
+    }
+    .post-cta h3 { color: #fff; font-family: var(--font-display); font-size: 1.5rem; margin: 0 0 0.5rem; }
+    .post-cta p  { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin: 0 0 1.5rem; }
+
+    #post-loading { text-align: center; padding: 6rem 2rem; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor__ring" aria-hidden="true"></div>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" aria-label="AB3 Visuals home">
+        <img src="images/logo-red.png" alt="AB3 Visuals" class="nav__logo-img" />
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="services/real-estate.html">Real Estate</a></li>
+        <li><a href="services/aerial.html">Aerial</a></li>
+        <li><a href="services/commercials.html">Commercials</a></li>
+        <li><a href="services/matterport.html">Matterport</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html" class="is-active">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav__right">
+        <a href="book.html" class="btn btn-primary">Book a Shoot</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="services/real-estate.html">Real Estate</a></li>
+      <li><a href="services/aerial.html">Aerial</a></li>
+      <li><a href="services/commercials.html">Commercials</a></li>
+      <li><a href="services/matterport.html">Matterport</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="book.html" class="btn btn-primary" style="display:inline-block;margin-top:1rem">Book a Shoot</a></li>
+    </ul>
+  </div>
+
+  <div id="post-loading">Loading post…</div>
+  <main id="post-main" style="display:none">
+    <section class="post-hero" id="post-hero">
+      <span class="label" id="post-cat"></span>
+      <h1 id="post-title"></h1>
+      <p class="post-hero__meta">
+        <span id="post-date"></span>
+      </p>
+    </section>
+    <img id="post-cover" class="post-cover" alt="" style="display:none" />
+    <section class="post-body-section">
+      <div class="post-body-section__inner">
+        <a href="blog.html" class="post-back">← Back to Blog</a>
+        <div class="post-body" id="post-body"></div>
+        <div class="post-cta">
+          <h3>Ready to Elevate Your Listings?</h3>
+          <p>Same-day delivery · FAA certified drone · HDR photography · Tampa Bay area</p>
+          <a href="book.html" class="btn btn-primary">Book a Shoot</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__top">
+      <div>
+        <a href="/"><img src="images/logo.png" alt="AB3 Visuals" class="footer__logo-img" /></a>
+        <p class="footer__tagline">Luxury real estate media — St. Petersburg, FL</p>
+      </div>
+      <div class="footer__social" aria-label="Social media">
+        <a href="https://www.facebook.com/ab3visuals" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ab3visuals" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.youtube.com/ab3visuals" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#111"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div>
+        <p class="footer__col-head">Services</p>
+        <nav class="footer__col-links"><a href="services/real-estate.html">Real Estate Photography</a><a href="services/aerial.html">Aerial & Drone</a><a href="services/commercials.html">Commercial Video</a><a href="services/matterport.html">Matterport 3D</a></nav>
+      </div>
+      <div>
+        <p class="footer__col-head">Company</p>
+        <nav class="footer__col-links"><a href="about.html">About Us</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a></nav>
+      </div>
+      <div>
+        <p class="footer__col-head">Contact</p>
+        <p class="footer__col-text"><a href="tel:+17272034223" style="color:rgba(255,255,255,0.7)">727-203-4223</a></p>
+        <p class="footer__col-text" style="margin-top:0.3rem"><a href="mailto:info@ab3visuals.com" style="color:rgba(255,255,255,0.7)">info@ab3visuals.com</a></p>
+      </div>
+      <div>
+        <p class="footer__col-head">Location</p>
+        <p class="footer__col-text">St. Petersburg, FL</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 AB3 Visuals. All rights reserved.</p>
+      <p class="footer__copy">St. Petersburg, FL · 727-203-4223</p>
+      <p class="footer__copy footer__credit">Created with <span class="footer__heart">♥</span> at <a href="https://creativelygrow.com" target="_blank" rel="noopener" class="footer__cg">CreativelyGrow</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const params   = new URLSearchParams(window.location.search);
+    const slug     = params.get('post');
+
+    function formatDate(str) {
+      const d = new Date(str + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function parseFrontmatter(text) {
+      const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+      if (!match) return { fm: {}, body: text };
+      const fm = {};
+      match[1].split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        const key = line.slice(0, idx).trim();
+        const val = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+        fm[key] = val;
+      });
+      return { fm, body: match[2] };
+    }
+
+    if (!slug) {
+      window.location.href = 'blog.html';
+    } else {
+      fetch(`/posts/${slug}.md`)
+        .then(r => { if (!r.ok) throw new Error('Not found'); return r.text(); })
+        .then(text => {
+          const { fm, body } = parseFrontmatter(text);
+
+          document.title = (fm.title || 'Post') + ' — AB3 Visuals';
+          document.getElementById('post-title').textContent = fm.title || '';
+          document.getElementById('post-cat').textContent   = fm.category || 'Blog';
+          document.getElementById('post-date').textContent  = fm.date ? formatDate(fm.date) : '';
+          document.getElementById('post-body').innerHTML    = marked.parse(body);
+
+          if (fm.coverImage) {
+            const img = document.getElementById('post-cover');
+            img.src = fm.coverImage;
+            img.alt = fm.title || '';
+            img.style.display = 'block';
+          }
+
+          document.getElementById('post-loading').style.display = 'none';
+          document.getElementById('post-main').style.display    = '';
+        })
+        .catch(() => {
+          document.getElementById('post-loading').textContent = 'Post not found.';
+        });
+    }
+  </script>
+</body>
+</html>

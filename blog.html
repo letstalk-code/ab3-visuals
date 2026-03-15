@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — AB3 Visuals</title>
+  <meta name="description" content="Tips, guides, and insights on real estate photography, aerial drone, video marketing, and virtual staging from AB3 Visuals in St. Petersburg, FL." />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .blog-hero {
+      background: #0e0e0e;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .blog-hero .label { color: #e31c1c; }
+    .blog-hero h1 { color: #fff; font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.5rem); margin: 0.5rem 0 1rem; }
+    .blog-hero p { color: rgba(255,255,255,0.55); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+    .blog-grid-section { padding: 5rem 2rem; background: var(--cream); }
+    .blog-grid-section__inner { max-width: 1160px; margin: 0 auto; }
+
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 580px) { .blog-grid { grid-template-columns: 1fr; } }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+
+    .blog-card__img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover;
+      background: #1a1a1a;
+    }
+    .blog-card__img-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a1007 0%, #2a1a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .blog-card__img-placeholder svg { width: 40px; height: 40px; opacity: 0.25; }
+
+    .blog-card__body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .blog-card__cat {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #e31c1c; margin-bottom: 0.5rem;
+    }
+    .blog-card__title {
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+      color: #1a1007; line-height: 1.3; margin: 0 0 0.6rem;
+    }
+    .blog-card__excerpt {
+      font-size: 0.85rem; color: #666; line-height: 1.6; flex: 1;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .blog-card__foot {
+      margin-top: 1rem; padding-top: 0.9rem;
+      border-top: 1px solid #f0ebe3;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .blog-card__date { font-size: 0.75rem; color: #999; }
+    .blog-card__read { font-size: 0.75rem; font-weight: 600; color: #e31c1c; }
+
+    .blog-empty { text-align: center; padding: 4rem 2rem; color: #999; grid-column: 1/-1; }
+
+    #blog-loading { text-align: center; padding: 4rem; color: #999; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <!-- CURSOR -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor__ring" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" aria-label="AB3 Visuals home">
+        <img src="images/logo-red.png" alt="AB3 Visuals" class="nav__logo-img" />
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="services/real-estate.html">Real Estate</a></li>
+        <li><a href="services/aerial.html">Aerial</a></li>
+        <li><a href="services/commercials.html">Commercials</a></li>
+        <li><a href="services/matterport.html">Matterport</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html" class="is-active">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav__right">
+        <a href="book.html" class="btn btn-primary">Book a Shoot</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="services/real-estate.html">Real Estate</a></li>
+      <li><a href="services/aerial.html">Aerial</a></li>
+      <li><a href="services/commercials.html">Commercials</a></li>
+      <li><a href="services/matterport.html">Matterport</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="book.html" class="btn btn-primary" style="display:inline-block;margin-top:1rem">Book a Shoot</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <section class="blog-hero">
+      <span class="label">Insights & Guides</span>
+      <h1>The AB3 Blog</h1>
+      <p>Tips, trends, and expertise from Tampa Bay's real estate media team.</p>
+    </section>
+
+    <section class="blog-grid-section">
+      <div class="blog-grid-section__inner">
+        <div id="blog-loading">Loading posts…</div>
+        <div class="blog-grid" id="blog-grid" style="display:none"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__top">
+      <div>
+        <a href="/"><img src="images/logo.png" alt="AB3 Visuals" class="footer__logo-img" /></a>
+        <p class="footer__tagline">Luxury real estate media — St. Petersburg, FL</p>
+      </div>
+      <div class="footer__social" aria-label="Social media">
+        <a href="https://www.facebook.com/ab3visuals" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ab3visuals" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.youtube.com/ab3visuals" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#111"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div>
+        <p class="footer__col-head">Services</p>
+        <nav class="footer__col-links"><a href="services/real-estate.html">Real Estate Photography</a><a href="services/aerial.html">Aerial & Drone</a><a href="services/commercials.html">Commercial Video</a><a href="services/matterport.html">Matterport 3D</a></nav>
+      </div>
+      <div>
+        <p class="footer__col-head">Company</p>
+        <nav class="footer__col-links"><a href="about.html">About Us</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a></nav>
+      </div>
+      <div>
+        <p class="footer__col-head">Contact</p>
+        <p class="footer__col-text"><a href="tel:+17272034223" style="color:rgba(255,255,255,0.7)">727-203-4223</a></p>
+        <p class="footer__col-text" style="margin-top:0.3rem"><a href="mailto:info@ab3visuals.com" style="color:rgba(255,255,255,0.7)">info@ab3visuals.com</a></p>
+      </div>
+      <div>
+        <p class="footer__col-head">Location</p>
+        <p class="footer__col-text">St. Petersburg, FL</p>
+        <p class="footer__col-text" style="margin-top:0.3rem;font-size:0.78rem;color:rgba(255,255,255,0.4)">Serving the Tampa Bay area</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 AB3 Visuals. All rights reserved.</p>
+      <p class="footer__copy">St. Petersburg, FL · 727-203-4223</p>
+      <p class="footer__copy footer__credit">Created with <span class="footer__heart">♥</span> at <a href="https://creativelygrow.com" target="_blank" rel="noopener" class="footer__cg">CreativelyGrow</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function formatDate(str) {
+      const d = new Date(str + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    fetch('/api/posts')
+      .then(r => r.json())
+      .then(posts => {
+        document.getElementById('blog-loading').style.display = 'none';
+        const grid = document.getElementById('blog-grid');
+        grid.style.display = '';
+        if (!posts.length) {
+          grid.innerHTML = '<p class="blog-empty">No posts yet — check back soon.</p>';
+          return;
+        }
+        grid.innerHTML = posts.map(p => `
+          <a href="blog-post.html?post=${p.slug}" class="blog-card fade-up">
+            ${p.coverImage
+              ? `<img src="${p.coverImage}" alt="${p.title}" class="blog-card__img" loading="lazy" />`
+              : `<div class="blog-card__img-placeholder"><svg viewBox="0 0 24 24" fill="white"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>`
+            }
+            <div class="blog-card__body">
+              <p class="blog-card__cat">${p.category || 'Insights'}</p>
+              <h2 class="blog-card__title">${p.title}</h2>
+              <p class="blog-card__excerpt">${p.excerpt || ''}</p>
+              <div class="blog-card__foot">
+                <span class="blog-card__date">${p.date ? formatDate(p.date) : ''}</span>
+                <span class="blog-card__read">Read →</span>
+              </div>
+            </div>
+          </a>
+        `).join('');
+
+        // trigger fade-up observer on new cards
+        document.querySelectorAll('.blog-card.fade-up').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) el.classList.add('is-visible');
+        });
+      })
+      .catch(() => {
+        document.getElementById('blog-loading').textContent = 'Could not load posts.';
+      });
+  </script>
+</body>
+</html>
