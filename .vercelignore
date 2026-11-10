@@ -1,0 +1,5 @@
+# Internal working files — never publish
+tasks/
+.claude/
+*.log
+*.zip
